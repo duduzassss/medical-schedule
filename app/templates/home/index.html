@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+    {% block styles %}
+        {{ super() }}
+        
+        .botao a{
+          font-weight: 400 !important;
+        }
+
+        main{
+          position: absolute !important;
+          width: 100% !important;
+          height: 100% !important;
+          background: url("../../static/img/back2.jpg") no-repeat !important;
+          background-size: 100vw 100% !important;
+
+        }
+    {% endblock %}
+
+
+
+    <!-- MAIN
+    ================================================= -->
+    {% block content %}
+      <div class="texto-principal col-md-8 col-lg-7 m-auto d-flex flex-lg-column align-items-center justify-content-center h-100">
+        
+        <!-- Heading -->
+        <h1 class="text-center mb-4 animate" data-toggle="animation" data-animation="fadeUp" data-animation-order="1" data-animation-trigger="load">
+          Consultas marcadas rapidamente
+        </h1>
+
+        <!-- Subheading -->
+        <p class="lead text-center mb-5 animate">
+          Registre-se em nosso site para agendar suas consultas como paciente ou para você médico, ter suas consultas agendada em um só lugar!
+        </p>
+
+        <!-- Button -->
+        <p class="text-center mb-0 animate botao">
+          <a href="" class="btn btn-outline-success">
+            Começar agora
+          </a>
+        </p>
+
+      </div>
+    {% endblock %}

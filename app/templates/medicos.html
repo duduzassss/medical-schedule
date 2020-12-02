@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ super() }}Médicos{% endblock %}
+
+{% block styles %}
+	{{super()}}
+	
+	body{
+		height: 100% !important;
+		width: 100% !important;
+	}
+	.navbar{
+		position:absolute !important;
+		top:0px !important;
+		left:0px !important;
+		height:10vh !important;
+		right:0px !important;
+		overflow:hidden !important;
+	}
+
+
+	main{
+		position: absolute;
+		top: 10vh;
+		bottom: 10vh;
+		left: 0px;
+		right: 0px;
+		overflow: auto;
+
+
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.tamanho-table{
+		width: 70%;
+		position: absolute;
+		top: 15%;
+		bottom: -15%;
+		
+	}
+	table thead th {
+		color: mediumseagreen;
+		font-size: 1.6rem;
+		font-weight: bold;
+	}
+	table tbody tr td{
+		font-size: 1rem;
+		color: #000;
+	}
+	table tbody tr td a{
+		text-decoration: none;
+		color: mediumseagreen;
+	}
+	table tbody tr td a:hover{
+		color: #DDA953;
+	}
+	.fa-pencil, .fa-trash, .fa-eye{
+		font-size: 1.4rem;
+		margin-right: .5rem;
+	}
+
+	footer{
+		position: absolute;
+		bottom: 0;
+		overflow: hidden;
+	}
+	
+	.flashes{
+		list-style: none;
+		padding: 0;
+	}
+
+{% endblock %}
+
+{% block content %}
+	<div class="tamanho-table">
+		{% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="alert alert-{{ category }}"  role="alert" >{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+		{% endwith %}
+		<table class="table h-25">
+			<thead>
+				<th>Nome</th>
+				<th>Especialidade</th>
+				<th>Ações</th>
+			</thead>
+			<tbody>
+				{% for dado in dados %}
+				<tr>
+					<td>{{ dado.nome }}</td>
+					<td>{{ dado.especialidade }}</td>
+					<td>
+						<a href="/medicosedit/{{ dado.id }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+						<a href="/medicosview/{{ dado.id }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+						<a href="/medicosdel/{{ dado.id }}" onclick="return confirm('Tem certeza que quer deletar {{ dado.nome }} ?')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<p><a href="/medicosadd" class="btn btn-success">Cadastra Médico</a></p>
+	</div>
+	
+	
+{% endblock %}
