@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, request
 from app import app
 
 from app.models.models import Medico, db
@@ -23,7 +23,7 @@ def add_medico_post():
         novo_medico = Medico(nome=form.nome.data,especialidade=form.especialidade.data)
         db.session.add(novo_medico)
         db.session.commit()
-        flash('Medico cadastrado com sucesso','success')
+        flash('Médico cadastrado com sucesso','success')
     else:
         flash('Erro nos dados.'+str(form.errors),'danger')
     return redirect('/medicos')
@@ -41,7 +41,7 @@ def edit_medico_post(_id):
     if form.validate_on_submit():
         form.populate_obj(m)
         db.session.commit()
-        flash('Medico alterado com sucesso.','success')
+        flash('Alterado com sucesso!','success')
     else:
         flash('Nao alterado, revise os dados.'+str(form.errors),'danger')
     return redirect('/medicos')

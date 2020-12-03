@@ -5,11 +5,37 @@
 {% block styles %}
         {{super()}}
 
-        
+        main{
+                position: absolute;
+                top: 10vh;
+                bottom: 10vh;
+                left: 0px;
+                right: 0px;
+                overflow: auto;
 
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+        }
+        form{
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+        }
+        form input{
+                margin-bottom: 1.3rem;
+        }
 {% endblock %}
 
 {% block content %}
         
-                
+        <form action="{{ url_for('edit_medico_post', _id = _id) }}" method="post">
+                {{ form.csrf_token }}
+                <input type="text" name="nome" value="{{form.nome.data}}" autocomplete="off">
+                <input type="text" name="especialidade" value="{{form.especialidade.data}}" autocomplete="off">
+                {{form.enviar}}
+        </form>
+
 {% endblock %}
