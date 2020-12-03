@@ -1,5 +1,12 @@
-{% extends "base.tpl" %}
+{% extends "base.html" %}
 {% block title %}....::Médicos::....{% endblock %}
+
+{% block styles %}
+	{{super()}}
+	main{
+		top: -30vh !important;
+	}
+{% endblock %}
 
 {% block content %}
 	<table class="table table-stripped">
@@ -30,5 +37,5 @@
 			{% endfor %}
 		</tbody>
 	</table>
-	<p><a href="/pacientesadd" class="btn btn-info">Cadastra Paciente</a></p>
+	<p><a href="/pacientesadd" class="btn btn-outline-success">Cadastra Paciente</a></p>
 {% endblock %}

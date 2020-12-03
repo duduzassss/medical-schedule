@@ -48,7 +48,6 @@ def edit_medico_post(_id):
 
 
 @app.route('/medicosview/<_id>',methods=['GET'])
-
 def view_medico_get(_id):
     m = Medico.query.filter_by(id=_id).first()
     return render_template('view_medico.html', d = m)
